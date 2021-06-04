@@ -1,0 +1,13 @@
+addons:
+  sonarcloud:
+    organization: "geetha-xilinx"
+    token:
+      secure: iyCsLg8Az0HS61NK5WIGyTt+uzgmbjphpZYlcCXh0Hwu4acccQTeEZL7uWD5yDn0bo6jQe5ftVzL+FyI5CgJMaH2UaUHAxbzgqeBCFZ5wqmpH6dLfz/PPJYv6k9BAR704cFdP/tbn6v+NuP1R9jKcNvzOlcuQQ5YNaIzXXqMi1aBzl6eT2ev4RgRNRETn6q6p69D/qnoPakx+jX2BDjjRWe02I4zNP09pjlv7MFzRY/oyLZJMic6avuUPv7i44s0zNwDie50ki6eGnHOghbN7WPY4rC7FTkxljHFTsUK9evmhO8sl+0N6g7WwHu+bpjnLRaBeRx683wppsz8Zrry1nh6pZekmoYFeBfhvNydrBYQ8uMHj/Zg+PPRLTGEPps0yDUy5YDd/87dzPx7Uj107NtPEyf5WmkUqdJa320vWZoYwa8kaWu0mvDllgH+SyoneTZ7FGwAvPCUgHkha6FJsY/ijrZh58yoku/fOBbBZwFlPSUjeiSR+Bji3+mb0GYCcdsT4nv/H8n271o6Dha39tTp6/VjHiXU1PTdHnuODnvCFLQjroRtfNNiA1MxxFfYzG41inZ7cNYl+MKiAxG/PG0K6dUUmMh3y6p4Hfqu57de+IJtibQttaCe4sNhXikiKLETPI9Govr67I/GRcmkNVaMLZdSW4nP0/yLrzCjGeg=
+
+script:
+  # Wraps the compilation with the Build Wrapper to generate configuration (used
+  # later by the SonarScanner) into the "bw-output" folder
+  - build-wrapper-linux-x86-64 --out-dir bw-output <your clean build command>
+  # And finally run the SonarCloud analysis - read the "sonar-project.properties"
+  # file to see the specific configuration
+  - sonar-scanner -Dsonar.cfamily.build-wrapper-output=bw-output
